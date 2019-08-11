@@ -217,6 +217,34 @@ deleteButton.addEventListener("click", deleteDigit);
 
 
 
+
+
+
+//if guess is correct
+const isCorrectNum = e => {
+  if (Number(guessingArray.join("")) === numberToGuess) {
+    msgContainer.firstElementChild.innerHTML = "you won!";
+    guessedNumContainer.innerHTML = `${numberToGuess} is indeed the correct number.`;
+    msgContainer.style.backgroundColor = "turquoise";
+    msgBackground.style.opacity = "1";
+    msgBackground.style.zIndex = "1";
+  }
+}
+
+
+//If all three guesses have been used and number is not correct
+const gameOver = e => {
+  if (guessedNumsArray.length === 3 && Number(guessingArray.join("")) !== numberToGuess) {
+    triesLeft.style.gridColumn = "-1"
+    msgContainer.firstElementChild.innerHTML = "game over!";
+    msgContainer.style.backgroundColor = "#ff00ba";
+    guessedNumContainer.innerHTML = `the correct number was ${numberToGuess}`;
+    document.querySelector(".toggle-msg").style.opacity = "1";
+    document.querySelector(".toggle-msg").style.zIndex = "1";
+  }
+}
+
+
 const submitGuess = e => {
 
   //if guess button is pressed, push the num to be guessed to the guessedNumsArray
@@ -247,31 +275,6 @@ const submitGuess = e => {
 guess.addEventListener("click", submitGuess);
 
 
-
-//if guess is correct
-const isCorrectNum = e => {
-  if (Number(guessingArray.join("")) === numberToGuess) {
-    msgContainer.firstElementChild.innerHTML = "you won!";
-    guessedNumContainer.innerHTML = `${numberToGuess} is indeed the correct number.`;
-    msgContainer.style.backgroundColor = "turquoise";
-    msgBackground.style.opacity = "1";
-    msgBackground.style.zIndex = "1";
-  }
-}
-
-
-
-//If all three guesses have been used and number is not correct
-const gameOver = e => {
-  if (guessedNumsArray.length === 3 && Number(guessingArray.join("")) !== numberToGuess) {
-    triesLeft.style.gridColumn = "-1"
-    msgContainer.firstElementChild.innerHTML = "game over!";
-    msgContainer.style.backgroundColor = "#ff00ba";
-    guessedNumContainer.innerHTML = `the correct number was ${numberToGuess}`;
-    document.querySelector(".toggle-msg").style.opacity = "1";
-    document.querySelector(".toggle-msg").style.zIndex = "1";
-  }
-}
 
 
 

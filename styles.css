@@ -255,6 +255,9 @@ body {
   border: inset 10px #99c71a;
 }
 
+.keyboard i {
+  pointer-events: none;
+}
 
 #delete {
   border: outset 10px #b90b0b;
