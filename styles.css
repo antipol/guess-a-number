@@ -70,13 +70,14 @@ body {
 
 .levels button {
   background-color: transparent;
+  text-shadow: 4px 4px 4px #00ffd6;
   font-size: 4em;
   border: none;
 }
 
-/* .levels button:focus {
-  font-size: 8em;
-} */
+.levels button:focus {
+  text-shadow: 4px 4px 10px hotpink;
+}
 
 #level1 {
   grid-column: 1;
