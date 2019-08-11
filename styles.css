@@ -122,6 +122,8 @@ body {
   grid-column: 1 / 3;
   background-color: #ffb6f2;
   border: outset 3px #f6adff;
+  margin: 5px;
+  padding: 10px;
 }
 
 .okay:active {
@@ -282,7 +284,7 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background-color: #080c01e0;
 }
 
@@ -299,7 +301,6 @@ body {
   border: solid 5px black;
   margin: 20px;
   padding: 20px;
-  background-color: #ff00ba;
 }
 
 .msg-container h1, .msg-container p {

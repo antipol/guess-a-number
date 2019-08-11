@@ -266,6 +266,7 @@ const gameOver = e => {
   if (guessedNumsArray.length === 3 && Number(guessingArray.join("")) !== numberToGuess) {
     triesLeft.style.gridColumn = "-1"
     msgContainer.firstElementChild.innerHTML = "game over!";
+    msgContainer.style.backgroundColor = "#ff00ba";
     guessedNumContainer.innerHTML = `the correct number was ${numberToGuess}`;
     document.querySelector(".toggle-msg").style.opacity = "1";
     document.querySelector(".toggle-msg").style.zIndex = "1";
