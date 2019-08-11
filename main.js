@@ -69,29 +69,42 @@ const guessingGame = (min, max) => {
 const startContainer = document.querySelector(".start-container");
 const levelContainer = document.querySelector(".levels");
 const gameContainer = document.querySelector(".game-container");
+const level1 = document.getElementById("level1");
+const level2 = document.getElementById("level2");
+const level3 = document.getElementById("level3");
+
 
 //set the min and max according to choice of level
 const pickLevel = e => {
   if (e.target && e.target.id === "level1") {
     min = 1;
     max = 10;
-    e.target.style.fontSize = "8em";
-    document.getElementById("level2").style.fontSize = "4em";
-    document.getElementById("level3").style.fontSize = "4em";
+    e.target.style.fontSize = "7em";
+    e.target.style.textShadow = "4px 4px 10px hotpink";
+    level2.style.fontSize = "4em";
+    level3.style.fontSize = "4em";
+    level2.style.textShadow = "4px 4px 4px #00ffd6";
+    level3.style.textShadow = "4px 4px 4px #00ffd6";
   }
   if (e.target && e.target.id === "level2") {
     min = 1;
     max = 100
-    e.target.style.fontSize = "8em";
-    document.getElementById("level1").style.fontSize = "4em";
-    document.getElementById("level3").style.fontSize = "4em";
+    e.target.style.fontSize = "7em";
+    e.target.style.textShadow = "4px 4px 10px hotpink";
+    level1.style.fontSize = "4em";
+    level3.style.fontSize = "4em";
+    level1.style.textShadow = "4px 4px 4px #00ffd6";
+    level3.style.textShadow = "4px 4px 4px #00ffd6";
   }
   if (e.target && e.target.id === "level3") {
     min = 1;
     max = 1000;
-    e.target.style.fontSize = "8em";
-    document.getElementById("level2").style.fontSize = "4em";
-    document.getElementById("level1").style.fontSize = "4em";
+    e.target.style.fontSize = "7em";
+    e.target.style.textShadow = "4px 4px 10px hotpink";
+    level2.style.fontSize = "4em";
+    level1.style.fontSize = "4em";
+    level2.style.textShadow = "4px 4px 4px #00ffd6";
+    level1.style.textShadow = "4px 4px 4px #00ffd6";
   }
   numberToGuess = guessingGame(min, max)
 }
@@ -145,20 +158,25 @@ homeButton.addEventListener("click", homeRefresh);
 
 
 
-let guessingArray = [];
 const triesLeft = document.querySelector(".status-bar .tries-left-fill");
 
-const guessedNumsArray = [];
-const guessedNums = document.querySelectorAll(".guesses p")
-const guesses = document.querySelector(".guesses");
+const guessingArray = []; //array for digits as they are being typed by user
+const guessedNumsArray = []; //list of numbers already guessed
+const guessedNums = document.querySelectorAll(".guesses p") //p with already guessed numbers
 
-const display = document.getElementById("guessingNum");
-const range = document.querySelector(".range");
+// const guesses = document.querySelector(".guesses"); //container for the guessed numbers
+
+const display = document.getElementById("guessingNum"); //number shown in display
+const range = document.querySelector(".range"); //range that secret number is in
 
 const keyboardNums = document.querySelector(".keyboard");
 
-const msgBackground = document.querySelector(".toggle-msg");
-const msgContainer = document.querySelector(".toggle-msg .msg-container");
+const keyboardNumbers = document.querySelectorAll(".keyboard-numbers"); //all numbers on keyboard
+const deleteButton = document.getElementById("delete"); //delete button
+const guess = document.getElementById("guess"); //guess button
+
+const msgBackground = document.querySelector(".toggle-msg"); //container for pop up message
+const msgContainer = document.querySelector(".toggle-msg .msg-container"); //pop up message box
 const guessedNumContainer = msgContainer.querySelector("p");
 
 
@@ -171,67 +189,88 @@ playButton.addEventListener("click", showRange);
 
 
 
-const numButtons = e => {
+//Print the number the user clicks in the display
+const printNum = e => {
+  if (e.target && e.target.className === "keyboard-numbers") {
+    guessingArray.push(e.target.innerHTML);
+    display.innerHTML = guessingArray.join("");
+  }
+}
 
+keyboardNums.addEventListener("click", printNum);
+
+
+
+//delete digit when delete button is clicked
+const deleteDigit = e => {
   if (e.target && e.target.id === "delete") {
 
     //if delete button is pressed, delete last digit in guessingArray
     guessingArray.pop();
 
-  } else if (e.target && e.target.id === "guess") {
-
-    //if guess button is pressed, push the num to be guessed to the guessedNumsArray
-    guessedNumsArray.push(guessingArray.join(""));
+    //update the display every time a button is clicked
     display.innerHTML = guessingArray.join("");
+  }
+}
 
-    //update p with the guessed number
-    for (let i = 0; i < guessedNumsArray.length; i++) {
-      guessedNums[i].innerHTML = guessedNumsArray[i];
-
-    }
-
-    //for each try, subtract a life in the status bar
-    triesLeft.style.gridColumn = `1 / ${4 - guessedNumsArray.length}`;
-    triesLeft.style.borderRadius = "15px 0 0 15px";
-
-    //if guess is correct
-    if (Number(guessingArray.join("")) === numberToGuess) {
-      msgContainer.firstElementChild.innerHTML = "you won!";
-      guessedNumContainer.lastElementChild.innerHTML = `${numberToGuess} is indeed the correct number.`;
-      msgContainer.style.backgroundColor = "turquoise";
-      msgBackground.style.opacity = "1";
-      msgBackground.style.zIndex = "1";
-    }
-
-    //if all three guesses has been used and number is not guessed, show game over msg
-    if (guessedNumsArray.length === 3 && Number(guessingArray.join("")) !== numberToGuess) {
-      triesLeft.style.gridColumn = "-1"
-      msgContainer.firstElementChild.innerHTML = "game over!";
-      guessedNumContainer.firstElementChild.innerHTML = "";
-      guessedNumContainer.lastElementChild.innerHTML = `you lost! the correct number was ${numberToGuess}`;
-      document.querySelector(".toggle-msg").style.opacity = "1";
-      document.querySelector(".toggle-msg").style.zIndex = "1";
-    }
-
-    //if guess is wrong, but attempts is less than 3
-    //don't know yet, message across the scsreen?
-
-    //reset display when guess has been pressed
-    guessingArray.splice(0);
+deleteButton.addEventListener("click", deleteDigit);
 
 
 
-  } else if (e.target && e.target.tagName === "BUTTON") {
-    //if keyboard button with number is pressed, push that number to the guessingArray
-    guessingArray.push(e.target.innerHTML);
+const submitGuess = e => {
+
+  //if guess button is pressed, push the num to be guessed to the guessedNumsArray
+  guessedNumsArray.push(guessingArray.join(""));
+
+  //update p in guessed number container with the last guessed number
+  for (let i = 0; i < guessedNumsArray.length; i++) {
+    guessedNums[i].innerHTML = guessedNumsArray[i];
+
   }
 
-  //update the display every time a button is clicked
+  //for each try, subtract a life in the status bar
+  triesLeft.style.gridColumn = `1 / ${4 - guessedNumsArray.length}`;
+  triesLeft.style.borderRadius = "15px 0 0 15px";
+
+  //check if its the correct number
+  isCorrectNum();
+  //check if its game over
+  gameOver();
+
+  //reset display when guess has been pressed
+  guessingArray.splice(0);
   display.innerHTML = guessingArray.join("");
+
 
 }
 
-keyboardNums.addEventListener("click", numButtons);
+guess.addEventListener("click", submitGuess);
+
+
+
+//if guess is correct
+const isCorrectNum = e => {
+  if (Number(guessingArray.join("")) === numberToGuess) {
+    msgContainer.firstElementChild.innerHTML = "you won!";
+    guessedNumContainer.innerHTML = `${numberToGuess} is indeed the correct number.`;
+    msgContainer.style.backgroundColor = "turquoise";
+    msgBackground.style.opacity = "1";
+    msgBackground.style.zIndex = "1";
+  }
+}
+
+
+
+//If all three guesses have been used and number is not correct
+const gameOver = e => {
+  if (guessedNumsArray.length === 3 && Number(guessingArray.join("")) !== numberToGuess) {
+    triesLeft.style.gridColumn = "-1"
+    msgContainer.firstElementChild.innerHTML = "game over!";
+    guessedNumContainer.innerHTML = `the correct number was ${numberToGuess}`;
+    document.querySelector(".toggle-msg").style.opacity = "1";
+    document.querySelector(".toggle-msg").style.zIndex = "1";
+  }
+}
 
 
 

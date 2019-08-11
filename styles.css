@@ -10,7 +10,7 @@ font-family: 'Press Start 2P', cursive; */
   padding: 0;
   font-family: 'Source Code Pro', monospace;
   text-transform: uppercase;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.2em;
 }
 
 *:focus {
@@ -73,10 +73,6 @@ body {
   text-shadow: 4px 4px 4px #00ffd6;
   font-size: 4em;
   border: none;
-}
-
-.levels button:focus {
-  text-shadow: 4px 4px 10px hotpink;
 }
 
 #level1 {
