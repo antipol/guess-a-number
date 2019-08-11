@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guessing Game</title>
+    <script src="https://kit.fontawesome.com/98d2dd5178.js"></script>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="container">
+
+      <!-- start of the intro screen with levels -->
+      <div class="start-container">
+        <h1 class="flex">guess a number</h1>
+
+        <h3 class="flex">choose your level</h3>
+        <div class="levels flex">
+          <button id="level1" type="button" name="button">1</button>
+          <button id="level2" type="button" name="button">2</button>
+          <button id="level3" type="button" name="button">3</button>
+        </div>
+
+        <div class="play flex">
+          <button class="play-button" type="button" name="button">play</button>
+        </div>
+
+        <div class="msg-background flex pick-level-msg">
+          <div class="msg-container">
+            <h1 class="flex">Pick a level!</h1>
+            <button class="okay" type="button" name="button">okay</button>
+          </div>
+        </div>
+
+      </div> <!-- end start-container -->
+
+
+      <!-- start of the game screen -->
+      <div class="game-container">
+
+        <div class="nav-bar">
+          <button type="button" name="button">
+            <div class="back flex">
+              <i class="fas fa-chevron-left"></i>
+              <h4>back</h4>
+            </div>
+          </button>
+          <button type="button" name="button">
+            <div class="start-over flex">
+              <h4>start over</h4>
+              <i class="fas fa-undo"></i>
+            </div>
+          </button>
+        </div> <!-- end nav-bar -->
+
+        <div class="status-bar">
+          <div class="tries-left">
+            <div class="tries-left-fill"></div>
+          </div>
+          <div class="guesses">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+          </div>
+        </div> <!-- end status-bar -->
+
+        <div class="display flex">
+          <p id="guessingNum"></p>
+        </div> <!-- end display -->
+
+        <div class="range flex">
+          <p></p>
+        </div>
+
+        <div class="keyboard">
+          <button type="button" name="button">1</button>
+          <button type="button" name="button">2</button>
+          <button type="button" name="button">3</button>
+          <button type="button" name="button">4</button>
+          <button type="button" name="button">5</button>
+          <button type="button" name="button">6</button>
+          <button type="button" name="button">7</button>
+          <button type="button" name="button">8</button>
+          <button type="button" name="button">9</button>
+          <button type="button" name="button" id="delete"><i class="fas fa-backspace"></i></button>
+          <button type="button" name="button">0</button>
+          <button type="button" name="button" id="guess"><i class="fas fa-check"></i></button>
+        </div>
+        <!-- end keyboard -->
+
+      </div>
+      <!-- end game-container -->
+
+
+
+      <!-- start of the screen when guess is incorrect -->
+      <div class="msg-background flex toggle-msg">
+        <div class="incorrect msg-container">
+          <h1 class="flex">wrong!</h1>
+          <p class="flex">
+            <span></span>
+          </p>
+          <button class="home" type="button" name="button">home</button>
+          <button class="try-again" type="button" name="button">play again</button>
+        </div>
+      </div>
+      <!-- end wrong-container -->
+
+
+      <!-- start of the screen when guess is correct -->
+      <!-- <div class="msg-background flex">
+        <div class="correct msg-container">
+          <h1 class="flex">correct!</h1>
+          <p class="flex"><span></span> is indeed the correct number</p>
+          <button class="home" type="button" name="button">home</button>
+          <button class="try-again" type="button" name="button">try again</button>
+        </div>
+      </div>  -->
+      <!-- end win-container -->
+
+
+      <!-- start of game over screen -->
+      <!-- <div class="msg-background flex">
+        <div class="msg-container">
+          <h1 class="flex">game over!</h1>
+          <p class="flex">you lost.</p>
+          <button class="home" type="button" name="button">home</button>
+          <button class="try-again" type="button" name="button">try again</button>
+        </div>
+      </div> -->
+      <!-- end game-over-container -->
+
+    </main> <!-- end container -->
+
+    <script type="text/javascript" src="main.js"></script>
+  </body>
+</html>
