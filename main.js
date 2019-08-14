@@ -1,50 +1,5 @@
 //GUESSING GAME - guess a num between 0 and 10
 
-/*
-const getRandomIntInclusive = (min, max) => {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1) + min);
-  //Both max and min are included
-}
-
-const guessingGame = () => {
-  //create a num to guess beetween 0 anf 10
-  let numberToGuess = getRandomIntInclusive(0, 10);
-
-  let count = 1;
-
-  //make first guess
-  let guess = parseInt(prompt('Guess a number between 0 and 10. You have 3 attempts'));
-
-  //As long as the guess is incorrect and you have tried to guess less than 3 times, try to guess again
-
-  while (guess != numberToGuess && count < 3) {
-
-    if (isNaN(guess)) {
-      guess = parseInt(prompt('No, not a number'));
-    } else {
-      guess = parseInt(prompt(`Wrong, try aggain, you have ${3 - count} attempts left`))
-      count++;
-    }
-  }
-
-  if (guess == numberToGuess && count < 3) {
-    alert(`Succes, the number is ${numberToGuess}. You got it after ${count} attempts.`)
-  } else {
-    alert(`Sorry, you didnt't guess that the number was ${numberToGuess} in your three attempts`)
-  }
-}
-
-guessingGame()
-
-*/
-
-
-
-
-//MY VERSION
-
 //Start screen, pick a level:
 
 //set initial level to 0, 0
@@ -122,12 +77,14 @@ const startGame = e => {
     const showLevelMsg = document.querySelector(".pick-level-msg");
     showLevelMsg.style.opacity = "1";
     showLevelMsg.style.zIndex = "1";
+    showLevelMsg.style.transition = "opacity 0.5s";
 
     //to close message
     const okayButton = showLevelMsg.querySelector("button");
     const okay = e => {
     showLevelMsg.style.opacity = "0";
     showLevelMsg.style.zIndex = "-1";
+    showLevelMsg.style.transition = "opacity 0.5s";
     }
     okayButton.addEventListener("click", okay);
   } else {
@@ -223,11 +180,12 @@ deleteButton.addEventListener("click", deleteDigit);
 //if guess is correct
 const isCorrectNum = e => {
   if (Number(guessingArray.join("")) === numberToGuess) {
-    msgContainer.firstElementChild.innerHTML = "you won!";
+    msgContainer.firstElementChild.innerHTML = "you win!";
     guessedNumContainer.innerHTML = `${numberToGuess} is indeed the correct number.`;
     msgContainer.style.backgroundColor = "turquoise";
     msgBackground.style.opacity = "1";
     msgBackground.style.zIndex = "1";
+    msgBackground.style.transition = "opacity 0.5s";
   }
 }
 
@@ -239,8 +197,9 @@ const gameOver = e => {
     msgContainer.firstElementChild.innerHTML = "game over!";
     msgContainer.style.backgroundColor = "#ff00ba";
     guessedNumContainer.innerHTML = `the correct number was ${numberToGuess}`;
-    document.querySelector(".toggle-msg").style.opacity = "1";
-    document.querySelector(".toggle-msg").style.zIndex = "1";
+    msgBackground.style.opacity = "1";
+    msgBackground.style.zIndex = "1";
+    msgBackground.style.transition = "opacity 0.5s";
   }
 }
 
@@ -287,6 +246,7 @@ const playAgain = e => {
   //on click, hide play again message
   msgBackground.style.zIndex = "-1";
   msgBackground.style.opacity = "0";
+  msgBackground.style.transition = "opacity 0.5s";
 
   // reset tries left to full
   triesLeft.style.gridColumn = "1 / 4";

@@ -19,7 +19,7 @@ font-family: 'Press Start 2P', cursive; */
 
 
 body {
-  padding: 15px;
+  padding: 10px;
   background-image: linear-gradient(#ff6969, #f58bc0, #ff9a41, #ffff4c, #5bea5b, #8ee2da, #5454da, #ea6fea);
   height: 100vh;
 }
@@ -160,6 +160,7 @@ body {
   color: white;
   background-color: transparent;
   border: none;
+  transition: color 0.5s;
 }
 
 .back {
@@ -199,7 +200,7 @@ body {
 
 .tries-left-fill {
   grid-column: 1 / 4;
-  background-image: linear-gradient(#165016, #00b74e, #113e11);
+  background-image: linear-gradient(#165016, #00b74e, #042d04);
   border-radius: 15px;
 }
 
@@ -249,6 +250,7 @@ body {
   text-shadow: 3px 3px 3px #f97995;
   font-weight: bold;
   font-size: 2em;
+  transition: background-color 0.5s;
 }
 
 .keyboard button:active {
@@ -324,4 +326,74 @@ body {
   padding: 5px;
   background-color: #a6ff00;
   border: outset 5px #5f6922;
+}
+
+
+
+
+
+
+/* MEDIA QUERIES */
+
+@media (min-width: 992px) {
+
+  /* Styling of start screen */
+  .start-container h1 {
+    font-size: 3em;
+  }
+  .start-container h3 {
+    font-size: 1.7em;
+  }
+  .play-button {
+    width: 40%;
+    transition: background-color 1s;
+  }
+  .play-button:hover {
+    background-color: #d447d6;
+    transition: background-color 1s;
+  }
+  .pick-level-msg h1 {
+    font-size: 2em;
+  }
+
+  /* Styling of game screen */
+  .game-container {
+    grid-template-columns: 1fr 5fr 5fr 1fr;
+    grid-template-rows: 1fr 1fr 7fr 1fr;
+    grid-gap: 10px;
+  }
+  .game-container .nav-bar {
+    grid-column: 1 / 5;
+    grid-row: 1 / 2;
+  }
+  .nav-bar button:hover {
+    color: #0ebdda;
+    transition: color 0.5s;
+  }
+  .game-container .status-bar {
+    grid-column: 2 / 4;
+    grid-row: 2 / 3;
+    padding: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .game-container .display {
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
+    font-size: 1.3em;
+  }
+  .game-container .keyboard {
+    grid-column: 3 / 4;
+    grid-row: 3 / 4;
+    padding: 10%;
+  }
+  .keyboard button:hover {
+    background-color: #d447d6;
+    transition: background-color 0.5s;
+  }
+  .game-container .range {
+    grid-column: 2 / 4;
+    grid-row: 4 / 5;
+    font-size: 1.5em;
+  }
 }
